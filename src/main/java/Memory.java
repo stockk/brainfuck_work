@@ -5,7 +5,7 @@ public class Memory {
 
     private int pointer = 0;
     private char [] array = new char [20];
-    private StringBuffer outputString = new StringBuffer("");
+    private StringBuffer outputString = new StringBuffer();
 
     /**
      * Method return current value that corresponds to point;
@@ -17,7 +17,9 @@ public class Memory {
     /**
      * Method increases the value of point by one;
      */
-    public void moveRight(){
+    public void moveRight()
+    {
+        if(pointer == array.length-1) pointer = 0;
         this.pointer ++;
     }
 
@@ -25,6 +27,7 @@ public class Memory {
      * Method decreases the value of point by one;
      */
     public void moveLeft(){
+        if(pointer == 0) pointer = array.length-1;
         this.pointer --;
     }
 
@@ -45,6 +48,7 @@ public class Memory {
     public int getPointer(){
         return pointer;
     }
+
     public String getOutputString(){
         return outputString.toString();
     }
@@ -53,14 +57,9 @@ public class Memory {
      * Method adds symbol in output String;
      */
     public void print(){
-        outputString.append(getCurrentValue());
+        outputString.append(this.array[this.pointer]);
     }
-    /**
-     * Method outputs outputString in console;
-     */
-    public void display(){
-        System.out.println(outputString);
-    }
+
 
 
 }
