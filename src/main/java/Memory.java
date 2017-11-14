@@ -27,5 +27,5 @@ public class Memory {
     public void print(){
             System.out.print(array[pointer]);
     }
-    
+
 }
