@@ -13,7 +13,6 @@ public class DecrementTest {
         Decrement decrement = new Decrement();
         decrement.execute(memory);
         assertEquals(memory.getCurrentValue(),0);
-        System.out.println(memory.getCurrentValue());
     }
 
     @Test
