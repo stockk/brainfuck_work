@@ -24,6 +24,10 @@ public class Memory {
         this.array[this.pointer]--;
     }
 
+    public int getPointer(){
+        return pointer;
+    }
+
     public void print(){
             System.out.print(array[pointer]);
     }
