@@ -8,7 +8,6 @@ public class Array implements Command {
 
     private List<Command> commands;
 
-
     public Array() {
         this.commands = new ArrayList<>();
     }

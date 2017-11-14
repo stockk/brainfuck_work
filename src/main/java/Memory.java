@@ -4,7 +4,7 @@
 public class Memory {
 
     private int pointer = 0;
-    private char [] array = new char [20];
+    private char[] array = new char[20];
     private StringBuffer outputString = new StringBuffer();
 
     /**
@@ -17,49 +17,47 @@ public class Memory {
     /**
      * Method increases the value of point by one;
      */
-    public void moveRight()
-    {
-        if(pointer == array.length-1) pointer = 0;
-        this.pointer ++;
+    public void moveRight() {
+        if (pointer == array.length - 1) pointer = 0;
+        this.pointer++;
     }
 
     /**
      * Method decreases the value of point by one;
      */
-    public void moveLeft(){
-        if(pointer == 0) pointer = array.length-1;
-        this.pointer --;
+    public void moveLeft() {
+        if (pointer == 0) pointer = array.length - 1;
+        this.pointer--;
     }
 
     /**
      * Method increases value that corresponds to point by one;
      */
-    public void increase(){
+    public void increase() {
         this.array[this.pointer]++;
     }
 
     /**
      * Method decreases value that corresponds to point by one;
      */
-    public void decries(){
+    public void decries() {
         this.array[this.pointer]--;
-    }
-
-    public int getPointer(){
-        return pointer;
-    }
-
-    public String getOutputString(){
-        return outputString.toString();
     }
 
     /**
      * Method adds symbol in output String;
      */
-    public void print(){
+    public void print() {
         outputString.append(this.array[this.pointer]);
     }
 
+    public int getPointer() {
+        return pointer;
+    }
+
+    public String getOutputString() {
+        return outputString.toString();
+    }
 
 
 }

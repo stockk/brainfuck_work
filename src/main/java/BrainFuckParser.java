@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 /**
  * Class converts a string to a sequence of commands .
- *
  */
 public class BrainFuckParser {
 
@@ -17,14 +16,13 @@ public class BrainFuckParser {
     }
 
     /**
-     *
      * This method takes row String with brainfuck language and converts it into sequence of commands.
      */
-    public void parse(String brainfuckExpression){
+    public void parse(String brainfuckExpression) {
 
-        if(Strings.isNullOrEmpty(brainfuckExpression))
+        if (Strings.isNullOrEmpty(brainfuckExpression))
             throw new RuntimeException("Input string is empry or null.");
-        else{
+        else {
             char charArrayOfOperation[] = brainfuckExpression.toCharArray();
             Operation[] operations = converToEnumArray(charArrayOfOperation);
             buildSequanceOfCommands(operations);
@@ -32,10 +30,9 @@ public class BrainFuckParser {
     }
 
     /**
-     *
      * This method takes char array with brainfuck language and converts it into sequence of commands.
      */
-    private void buildSequanceOfCommands(Operation [] operations){
+    private void buildSequanceOfCommands(Operation[] operations) {
 
         LinkedList<Array> stackArrays = new LinkedList<>();
 
@@ -83,28 +80,33 @@ public class BrainFuckParser {
     }
 
 
-
     /**
-     *
      * This method takes  array of Operation  and converts it into sequence of commands.
      */
-    private Operation[] converToEnumArray(char arr[]){
-        Operation [] operations = new Operation[arr.length];
+    private Operation[] converToEnumArray(char arr[]) {
+        Operation[] operations = new Operation[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            switch(arr[i]){
-                case '>': operations[i]=Operation.GREATERTHAN;
+            switch (arr[i]) {
+                case '>':
+                    operations[i] = Operation.GREATERTHAN;
                     break;
-                case '<': operations[i]=Operation.LESSTHAN;
+                case '<':
+                    operations[i] = Operation.LESSTHAN;
                     break;
-                case '+': operations[i] = Operation.PLUS;
+                case '+':
+                    operations[i] = Operation.PLUS;
                     break;
-                case '-': operations[i] = Operation.MINUS;
+                case '-':
+                    operations[i] = Operation.MINUS;
                     break;
-                case '.': operations[i] = Operation.DOT;
+                case '.':
+                    operations[i] = Operation.DOT;
                     break;
-                case '[': operations[i] = Operation.LEFTSQUAREBRACKET;
+                case '[':
+                    operations[i] = Operation.LEFTSQUAREBRACKET;
                     break;
-                case ']': operations[i] = Operation.RIGHTSQUAREBRACKET;
+                case ']':
+                    operations[i] = Operation.RIGHTSQUAREBRACKET;
                     break;
             }
         }
@@ -112,13 +114,15 @@ public class BrainFuckParser {
     }
 
 
-    
-    public String executeCommands(){
+    /**
+     * This method consistently performs  all comands from "commands" field.
+     */
+    public String executeCommands() {
 
         Memory memory = new Memory();
 
-        for (Command c:
-        commands){
+        for (Command c :
+                commands) {
             c.execute(memory);
         }
 
