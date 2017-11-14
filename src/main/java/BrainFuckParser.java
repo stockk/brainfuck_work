@@ -18,46 +18,47 @@ public class BrainFuckParser {
 
     public void parse(){
 
-        char arr[] = brainfuckExpression.toCharArray();
+        char charArrayOfOperation[] = brainfuckExpression.toCharArray();
         LinkedList<Array> stackArrays = new LinkedList<>();
+        Operation [] operations = converToEnumArray(charArrayOfOperation);
 
-        for (int i = 0; i < arr.length; i++) {
 
-            switch (arr[i]) {
-                case '>':
+        for (int i = 0; i < operations.length; i++) {
+            switch (operations[i]) {
+                case GREATERTHAN:
                     if (stackArrays.isEmpty())
                         commands.add(new MoveRight());
                     else
                         stackArrays.peek().addCommand(new MoveRight());
                     break;
-                case '<':
+                case LESSTHAN:
                     if (stackArrays.isEmpty())
                         commands.add(new MoveLeft( ));
                     else
                         stackArrays.peek().addCommand(new MoveLeft( ));
                     break;
-                case '+':
+                case PLUS:
                     if (stackArrays.isEmpty())
                         commands.add(new Increment( ));
                     else
                         stackArrays.peek().addCommand(new Increment( ));
                     break;
-                case '-':
+                case MINUS:
                     if (stackArrays.isEmpty())
                         commands.add(new Decrement( ));
                     else
                         stackArrays.peek().addCommand(new Decrement( ));
                     break;
-                case '.':
+                case DOT:
                     if (stackArrays.isEmpty())
                         commands.add(new Printer( ));
                     else
                         stackArrays.peek().addCommand(new Printer( ));
                     break;
-                case '[':
+                case LEFTSQUAREBRACKET:
                     stackArrays.push(new Array());
                     break;
-                case ']':
+                case RIGHTSQUAREBRACKET:
                     commands.add(stackArrays.pop());
                     break;
             }
@@ -65,6 +66,31 @@ public class BrainFuckParser {
 
 
     }
+
+
+    private Operation[] converToEnumArray(char arr[]){
+        Operation [] operations = new Operation[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            switch(arr[i]){
+                case '>': operations[i]=Operation.GREATERTHAN;
+                    break;
+                case '<': operations[i]=Operation.LESSTHAN;
+                    break;
+                case '+': operations[i] = Operation.PLUS;
+                    break;
+                case '-': operations[i] = Operation.MINUS;
+                    break;
+                case '.': operations[i] = Operation.DOT;
+                    break;
+                case '[': operations[i] = Operation.LEFTSQUAREBRACKET;
+                    break;
+                case ']': operations[i] = Operation.RIGHTSQUAREBRACKET;
+                    break;
+            }
+        }
+        return operations;
+    }
+
 
     public String executeCommands(){
 

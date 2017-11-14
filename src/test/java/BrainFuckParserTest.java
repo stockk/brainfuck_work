@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 public class BrainFuckParserTest {
     @Test
     public void HelloWorldTest(){
-        String helloWordBrainFuck = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++\n" +
-                " .>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.\n" +
-                " ------.--------.>+.>";
+        String helloWordBrainFuck = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++" +
+                ".>+.+++++++..+++.>++.<<+++++++++++++++.>.+++." +
+                "------.--------.>+.>";
 
         BrainFuckParser brainFuckParser = new BrainFuckParser(helloWordBrainFuck);
         brainFuckParser.parse();
