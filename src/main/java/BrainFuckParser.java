@@ -1,3 +1,5 @@
+import com.google.common.base.Strings;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -9,61 +11,66 @@ public class BrainFuckParser {
 
 
     private ArrayList<Command> commands;
-    private String brainfuckExpression;
 
-    public BrainFuckParser(String brainfuckExpression) {
-        this.brainfuckExpression = brainfuckExpression;
+    public BrainFuckParser() {
         this.commands = new ArrayList<>();
     }
 
-    public void parse(){
+    /**
+     *
+     * This method takes row String with brainfuck language and and converts it into sequence of commands.
+     */
+    public void parse(String brainfuckExpression){
 
-        char charArrayOfOperation[] = brainfuckExpression.toCharArray();
-        LinkedList<Array> stackArrays = new LinkedList<>();
-        Operation [] operations = converToEnumArray(charArrayOfOperation);
+        if(Strings.isNullOrEmpty(brainfuckExpression))
+            throw new RuntimeException("Input string is empry or null.");
+        else{
+            char charArrayOfOperation[] = brainfuckExpression.toCharArray();
+            LinkedList<Array> stackArrays = new LinkedList<>();
+            Operation[] operations = converToEnumArray(charArrayOfOperation);
 
 
-        for (int i = 0; i < operations.length; i++) {
-            switch (operations[i]) {
-                case GREATERTHAN:
-                    if (stackArrays.isEmpty())
-                        commands.add(new MoveRight());
-                    else
-                        stackArrays.peek().addCommand(new MoveRight());
-                    break;
-                case LESSTHAN:
-                    if (stackArrays.isEmpty())
-                        commands.add(new MoveLeft( ));
-                    else
-                        stackArrays.peek().addCommand(new MoveLeft( ));
-                    break;
-                case PLUS:
-                    if (stackArrays.isEmpty())
-                        commands.add(new Increment( ));
-                    else
-                        stackArrays.peek().addCommand(new Increment( ));
-                    break;
-                case MINUS:
-                    if (stackArrays.isEmpty())
-                        commands.add(new Decrement( ));
-                    else
-                        stackArrays.peek().addCommand(new Decrement( ));
-                    break;
-                case DOT:
-                    if (stackArrays.isEmpty())
-                        commands.add(new Printer( ));
-                    else
-                        stackArrays.peek().addCommand(new Printer( ));
-                    break;
-                case LEFTSQUAREBRACKET:
-                    stackArrays.push(new Array());
-                    break;
-                case RIGHTSQUAREBRACKET:
-                    commands.add(stackArrays.pop());
-                    break;
+            for (int i = 0; i < operations.length; i++) {
+                switch (operations[i]) {
+                    case GREATERTHAN:
+                        if (stackArrays.isEmpty())
+                            commands.add(new MoveRight());
+                        else
+                            stackArrays.peek().addCommand(new MoveRight());
+                        break;
+                    case LESSTHAN:
+                        if (stackArrays.isEmpty())
+                            commands.add(new MoveLeft());
+                        else
+                            stackArrays.peek().addCommand(new MoveLeft());
+                        break;
+                    case PLUS:
+                        if (stackArrays.isEmpty())
+                            commands.add(new Increment());
+                        else
+                            stackArrays.peek().addCommand(new Increment());
+                        break;
+                    case MINUS:
+                        if (stackArrays.isEmpty())
+                            commands.add(new Decrement());
+                        else
+                            stackArrays.peek().addCommand(new Decrement());
+                        break;
+                    case DOT:
+                        if (stackArrays.isEmpty())
+                            commands.add(new Printer());
+                        else
+                            stackArrays.peek().addCommand(new Printer());
+                        break;
+                    case LEFTSQUAREBRACKET:
+                        stackArrays.push(new Array());
+                        break;
+                    case RIGHTSQUAREBRACKET:
+                        commands.add(stackArrays.pop());
+                        break;
+                }
             }
         }
-
 
     }
 
