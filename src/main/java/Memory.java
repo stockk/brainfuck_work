@@ -19,6 +19,7 @@ public class Memory {
      */
     public void moveRight() {
         if (pointer == array.length - 1) pointer = 0;
+        else
         this.pointer++;
     }
 
@@ -27,6 +28,7 @@ public class Memory {
      */
     public void moveLeft() {
         if (pointer == 0) pointer = array.length - 1;
+        else
         this.pointer--;
     }
 
